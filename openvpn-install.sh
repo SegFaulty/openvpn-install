@@ -305,8 +305,9 @@ user nobody
 group $GROUPNAME
 persist-key
 persist-tun
-status openvpn-status.log
-verb 3
+verb 0
+log /dev/null
+status /dev/null
 crl-verify crl.pem" >> /etc/openvpn/server.conf
 	# Enable net.ipv4.ip_forward for the system
 	echo 'net.ipv4.ip_forward=1' > /etc/sysctl.d/30-openvpn-forward.conf

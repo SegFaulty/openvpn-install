@@ -18,7 +18,7 @@ create a helper function to simple edit config files
       fi
     }
 
-## secure sshd
+secure sshd:
 
 `configLine "Port ." "Port 222" /etc/ssh/sshd_config`
 
@@ -26,11 +26,18 @@ create a helper function to simple edit config files
 
 `systemctl reload sshd`
 
-
+download and start openVpn installer:
 
 `wget https://raw.githubusercontent.com/SegFaulty/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh && bash openvpn-install.sh`
 
-Once it ends, you can run it again to add more users, remove some of them or even completely uninstall OpenVPN.
+Once it ends, you can run it again to add more users or remove some of them:
+
+`bash openvpn-install.sh`
+
+
+--------
+###Origin Readme
+
 
 ## openvpn-install
 OpenVPN [road warrior](http://en.wikipedia.org/wiki/Road_warrior_%28computing%29) installer for Debian, Ubuntu and CentOS.

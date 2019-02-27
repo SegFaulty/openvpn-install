@@ -1,6 +1,29 @@
 
-### Installation
-Run the script and follow the assistant:
+### Installation on Ubuntu 16.04
+
+on a freshly installed ubuntu:
+
+## create a helper function to simple edit config files
+`
+function configLine {
+  local OLD_LINE_PATTERN=$1; shift
+  local NEW_LINE=$1; shift
+  local FILE=$1
+  local NEW=$(echo "${NEW_LINE}" | sed 's/\//\\\//g')
+  touch "${FILE}"
+  sed -i '/'"${OLD_LINE_PATTERN}"'/{s/.*/'"${NEW}"'/;h};${x;/./{x;q100};x}' "${FILE}"
+  if [[ $? -ne 100 ]] && [[ ${NEW_LINE} != '' ]]
+  then
+    echo "${NEW_LINE}" >> "${FILE}"
+  fi
+}
+`
+## secure sshd
+`configLine "Port ." "Port 222" /etc/ssh/sshd_config`
+`configLine "PasswordAuthentication ." "PasswordAuthentication no" /etc/ssh/sshd_config`
+`systemctl reload sshd`
+
+
 
 `wget https://raw.githubusercontent.com/SegFaulty/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh && bash openvpn-install.sh`
 
